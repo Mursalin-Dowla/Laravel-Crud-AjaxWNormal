@@ -35,9 +35,9 @@ Route::post('/updateproduct/{id}',[ControllerProduct::class,'update'])->name('up
 // Crud with ajax
 Route::get('/managecategory',[CategoryController::class,'index'])->name('managecategory');
 Route::post('/addcategory',[CategoryController::class,'store']);
-Route::post('/activecategory',[CategoryController::class,'activecategory']);
-Route::post('/inactivecategory',[CategoryController::class,'inactivecategory']);
-Route::post('/deletecategory',[CategoryController::class,'destroy']);
-Route::post('/updatecategory',[CategoryController::class,'update']);
+Route::get('/activecategory/{id}',[CategoryController::class,'activecategory']);
+Route::get('/inactivecategory/{id}',[CategoryController::class,'inactivecategory']);
+Route::get('/deletecategory/{id}',[CategoryController::class,'destroy']);
+Route::post('/updatecategory/{id}',[CategoryController::class,'update']);
 Route::get('/showcategory',[CategoryController::class,'show']);
-Route::get('/getcategory',[CategoryController::class,'edit']);
+Route::get('/getcategory/{id}',[CategoryController::class,'edit']);

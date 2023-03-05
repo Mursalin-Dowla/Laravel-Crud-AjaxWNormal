@@ -47,18 +47,18 @@ class CategoryController extends Controller
             "msg" => 'Data Succesfully Inserted'
         ]);
     }
-    public function activecategory(Request $request)
+    public function activecategory($id)
     {
-        $cat =Category::find($request->id);
+        $cat =Category::find($id);
         $cat->status = '2';
         $cat->update();
         return response()->json([
             "msg" => 'Status Updated'
         ]);
     }
-    public function inactivecategory(Request $request)
+    public function inactivecategory($id)
     {
-        $cat =Category::find($request->id);
+        $cat =Category::find($id);
         $cat->status = '1';
         $cat->update();
         return response()->json([
@@ -86,9 +86,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit($id)
     {
-       $cat = Category::find($request->id);
+       $cat = Category::find($id);
        return response([
         "status" => "200",
         "allData" => $cat
@@ -102,9 +102,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-        $cat = Category::find($request->id);
+        $cat = Category::find($id);
         $cat->name = $request->name;
         $cat->des = $request->des;
         $cat->status = $request->status;
@@ -120,9 +120,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $cat =Category::find($request->id);
+        $cat =Category::find($id);
         $cat->delete();
         return response()->json([
             "msg" => 'Item Deleted'

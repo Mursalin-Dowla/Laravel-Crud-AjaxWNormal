@@ -26,17 +26,9 @@ jQuery(document).ready(function(){
     })
     jQuery(document).on("click",'.btn-active',function(){
         var id= jQuery(this).val();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
         $.ajax({
-            url:'/activecategory',
-            type:'POST',
-            data:{
-                id:id
-            },
+            url:'/activecategory/'+id,
+            type:'GET',
             success:function(res){
                 alert(res.msg);
                 show();
@@ -45,17 +37,9 @@ jQuery(document).ready(function(){
     });
     jQuery(document).on("click",'.btn-inactive',function(){
         var id= jQuery(this).val();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
         $.ajax({
-            url:'/inactivecategory',
-            type:'POST',
-            data:{
-                id:id
-            },
+            url:'/inactivecategory/'+id,
+            type:'GET',
             success:function(res){
                 alert(res.msg);
                 show();
@@ -69,17 +53,9 @@ jQuery(document).ready(function(){
       });
      jQuery(document).on("click",".btn-confirm-delete",function(){
         var id = jQuery(this).val();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
         $.ajax({
-            url:'/deletecategory',
-            type:'POST',
-            data:{
-                id:id
-            },
+            url:'/deletecategory/'+id,
+            type:'GET',
             success:function(res){
                 alert(res.msg);
                 jQuery('#DeleteModal').modal('hide');
@@ -92,18 +68,10 @@ jQuery(document).ready(function(){
         var id= jQuery(this).val();
         jQuery('#UpdateModal').modal('show');
         jQuery('.btn-update').val(id);
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
         jQuery.ajax({
-          url:"/getcategory",
+          url:"/getcategory/"+id,
           type:'GET',
           dataType:"JSON",
-          data:{
-            id:id,
-          },
           success:function(res){
             var data = res.allData;
             jQuery('.cat-up-name').val(data.name);
@@ -124,10 +92,9 @@ jQuery(document).ready(function(){
             }
         });
         $.ajax({
-            url:'/updatecategory',
+            url:'/updatecategory/'+id,
             type:'POST',
             data:{
-                id:id,
                 name:name,
                 des:des,
                 status:status
