@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Frontend;
 use App\Http\Controllers\Backend\ControllerProduct;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,17 @@ Route::get('/deletecategory/{id}',[CategoryController::class,'destroy']);
 Route::post('/updatecategory/{id}',[CategoryController::class,'update']);
 Route::get('/showcategory',[CategoryController::class,'show']);
 Route::get('/getcategory/{id}',[CategoryController::class,'edit']);
+
+
+// image Crud
+Route::get('/addbrand',[BrandController::class,'index'])->name('addbrand');
+Route::post('/storebrand',[BrandController::class,'store'])->name('storebrand');
+Route::get('/managebrand',[BrandController::class,'show'])->name('managebrand');
+Route::get('/viewbrand/{id}',[BrandController::class,'view'])->name('viewbrand');
+Route::get('/editbrand/{id}',[BrandController::class,'edit'])->name('editbrand');
+Route::post('/updatebrand/{id}',[BrandController::class,'update'])->name('updatebrand');
+Route::get('/deletebrand/{id}',[BrandController::class,'deletebrand'])->name('deletebrand');
+Route::get('/deletegallery/{id}',[BrandController::class,'deletegallery'])->name('deletegallery');
+Route::post('/updategallery/{id}',[BrandController::class,'updategallery'])->name('updategallery');
+// for ajax
+Route::post('/insertbrand',[BrandController::class,'insertbrand'])->name('insertbrand');

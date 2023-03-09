@@ -137,4 +137,28 @@ jQuery(document).ready(function(){
             }
         })
     }
+
+    jQuery(document).on('submit','#brandData',function(e){
+        e.preventDefault();
+        var allData = new FormData(jQuery("#brandData")[0]);
+        $.ajax({
+            url:"/insertbrand",
+            type:"POST",
+            dataType:"JSON",
+            data:allData,
+            contentType:false,
+            processData:false,
+            success:function(res){
+                if(res.status== "failed"){
+                    jQuery(".spn-name").text(res.errors.name);
+                    jQuery(".spn-category").text(res.errors.cat_id);
+                    jQuery(".spn-brand-img").text(res.errors.image);
+                    jQuery(".spn-brand-imgs").text(res.errors.images);
+                }
+                else{
+                    alert(res.msg);
+                }
+            }
+        })
+    })
 })
